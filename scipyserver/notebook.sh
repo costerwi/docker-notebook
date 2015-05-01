@@ -4,13 +4,16 @@
 set -euo pipefail
 IFS=$'\n\t' 
 
-# Create the hash to pass to the IPython notebook, but don't export it so it doesn't appear
-# as an environment variable within IPython kernels themselves
-HASH=$(python3 -c "from IPython.lib import passwd; print(passwd('${PASSWORD}'))")
-unset PASSWORD
+if [ -n "$PASSWORD" ]; then
+  # Create the hash to pass to the IPython notebook, but don't export it so it doesn't appear
+  # as an environment variable within IPython kernels themselves
+  HASH=$(python3 -c "from IPython.lib import passwd; print(passwd('${PASSWORD}'))")
+  PASSWORD_OPTION="--NotebookApp.password=$HASH"
+  unset PASSWORD
+fi
 
-if [ $USE_HTTP -ne 0 ]; then
-  CERTFILE_OPTION=""
+if [ -n "$USE_HTTP" ]; then
+  unset CERTFILE_OPTION
 else
   # Create a self signed certificate for the user if one doesn't exist
   if [ ! -f $PEM_FILE ]; then
@@ -21,4 +24,4 @@ else
   CERTFILE_OPTION="--certfile=$PEM_FILE"
 fi
 
-ipython2 notebook --no-browser --port 8888 --ip=* $CERTFILE_OPTION --NotebookApp.password="$HASH" --matplotlib=inline
+ipython3 notebook --no-browser --ip=* $CERTFILE_OPTION $PASSWORD_OPTION
