@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Strict mode
-set -euo pipefail
-IFS=$'\n\t' 
-
 if [ -n "$PASSWORD" ]; then
   # Create the hash to pass to the IPython notebook, but don't export it so it doesn't appear
   # as an environment variable within IPython kernels themselves
