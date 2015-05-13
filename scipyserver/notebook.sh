@@ -8,15 +8,12 @@ if [ -n "$PASSWORD" ]; then
   unset PASSWORD
 fi
 
-if [ -n "$USE_HTTP" ]; then
-  unset CERTFILE_OPTION
-else
+if [ -n "$PEM_FILE" ]; then
   # Create a self signed certificate for the user if one doesn't exist
   if [ ! -f $PEM_FILE ]; then
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $PEM_FILE -out $PEM_FILE \
       -subj "/C=XX/ST=XX/L=XX/O=dockergenerated/CN=dockergenerated"
   fi
-
   CERTFILE_OPTION="--certfile=$PEM_FILE"
 fi
 
