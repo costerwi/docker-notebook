@@ -1,11 +1,25 @@
 FROM ipython/scipystack
 
-MAINTAINER IPython Project <ipython-dev@scipy.org>
+MAINTAINER Carl Osterwisch <costerwi@gmail.com>
 
 VOLUME /notebooks
 WORKDIR /notebooks
 
 EXPOSE 8888
+# Install extra Ubuntu packages
+RUN apt-get update && apt-get install -y \
+    octave \
+    unzip \
+    zip
+
+# Install extra Python modules
+RUN pip3 install \
+    metakernel \
+    octave_kernel
+
+# Install notebook extensions
+RUN ipython3 install-nbextension \
+        https://bitbucket.org/ipre/calico/downloads/calico-document-tools-1.0.zip
 
 # You can mount your own SSL certs as necessary here
 ENV PEM_FILE /key.pem
