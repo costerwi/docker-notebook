@@ -18,5 +18,5 @@ if [ -n "$PEM_FILE" ]; then
 fi
 
 # Create an ordinary user to run the notebook server
-useradd -MN --uid ${UID:-500} --gid ${GID:-users} --home /notebooks nbuser
+useradd -MN --uid ${NEWUID:-503} --gid ${NEWGID:-users} --home /notebooks nbuser
 su -c "ipython3 notebook --no-browser --ip=* $CERTFILE_OPTION $PASSWORD_OPTION" nbuser
