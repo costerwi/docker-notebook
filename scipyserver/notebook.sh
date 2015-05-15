@@ -17,6 +17,9 @@ if [ -n "$PEM_FILE" ]; then
   CERTFILE_OPTION="--certfile=$PEM_FILE"
 fi
 
-# Create an ordinary user to run the notebook server
-useradd -MN --uid ${NEWUID:-503} --gid ${NEWGID:-users} --home /notebooks nbuser
-su -c "ipython3 notebook --no-browser --ip=* $CERTFILE_OPTION $PASSWORD_OPTION" nbuser
+# Configure add-ons
+if [ ! -f ~/.ipython ]; then
+    ipython3 profile create
+fi
+
+exec ipython3 notebook --no-browser --ip=* $CERTFILE_OPTION $PASSWORD_OPTION
