@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y \
 # Install extra Python modules
 RUN pip3 install \
     metakernel \
-    octave_kernel
+    octave_kernel \
+    dwdatareader
 
 # Install notebook extensions
 RUN ipython3 install-nbextension \
