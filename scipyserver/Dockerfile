@@ -1,5 +1,8 @@
 FROM ipython/scipystack
 
+# sudo docker build -t scipyserver .
+# sudo docker run -p 8888:8888 -v /opt/work/notebooks:/notebooks -d --restart=always scipyserver
+
 MAINTAINER Carl Osterwisch <costerwi@gmail.com>
 
 VOLUME /notebooks
@@ -17,6 +20,7 @@ RUN pip3 install \
     metakernel \
     octave_kernel \
     mpld3 \
+    bokeh \
     dwdatareader \
     https://github.com/costerwi/NotebookDiff/tarball/instantiation-install \
     https://github.com/costerwi/GitCheckpoints/tarball/conventional-setup
