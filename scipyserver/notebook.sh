@@ -22,4 +22,4 @@ if [ ! -f ~/.ipython ]; then
     ipython3 profile create
 fi
 
-exec ipython3 notebook --no-browser --ip=* $CERTFILE_OPTION $PASSWORD_OPTION
+ipython3 notebook --no-browser --ip=* $CERTFILE_OPTION $PASSWORD_OPTION
