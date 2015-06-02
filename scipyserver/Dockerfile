@@ -16,7 +16,10 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install \
     metakernel \
     octave_kernel \
-    dwdatareader
+    mpld3 \
+    dwdatareader \
+    https://github.com/costerwi/NotebookDiff/tarball/instantiation-install \
+    https://github.com/costerwi/GitCheckpoints/tarball/conventional-setup
 
 # Install notebook extensions
 RUN ipython3 install-nbextension \
