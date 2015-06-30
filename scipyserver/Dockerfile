@@ -21,6 +21,7 @@ RUN pip3 install \
     octave_kernel \
     mpld3 \
     bokeh \
+    CoolProp \
     dwdatareader \
     https://github.com/costerwi/NotebookDiff/tarball/instantiation-install \
     https://github.com/costerwi/GitCheckpoints/tarball/conventional-setup
