@@ -13,5 +13,6 @@ RUN chmod o+x /notebook.sh
 # Create ordinary user
 RUN useradd -MN --uid 503 --gid users --home /notebooks nbuser
 USER nbuser
+ENV TEMP=/notebooks/tmp
 
 CMD ["/notebook.sh"]
