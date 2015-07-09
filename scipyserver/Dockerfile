@@ -19,8 +19,11 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install \
     metakernel \
     octave_kernel \
+    statsmodels \
     mpld3 \
     bokeh \
+    seaborn \
+    ggplot \
     CoolProp \
     dwdatareader \
     https://github.com/costerwi/NotebookDiff/tarball/instantiation-install \
